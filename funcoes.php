@@ -8,12 +8,27 @@ function carrega_pagina() {
     }
 }
 
+$acao = isset($_GET['acao']) ? $_GET['acao'] : null;
+
+if ($acao == "inserirTarefa") {
+    $nTarefa = isset($_GET['nTarefa']) ? $_GET['nTarefa'] : null;
+    $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : null;
+    $status = isset($_GET['status']) ? $_GET['status'] : null;
+    $prioridade = isset($_GET['prioridade']) ? $_GET['prioridade'] : null;
+    $observacao = isset($_GET['observacao']) ? $_GET['observacao'] : null;
+
+    inserir_tarefa($nTarefa, $categoria, $status, $prioridade, $observacao);
+
+} elseif ($acao == "listarTarefas") {
+    listar_tarefas();
+
+}
 // function abre_banco() {
 //     $pdo = new PDO("mysql:host=localhost;dbname=dbtarefas", "root", "");
 //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // }
 
-function insere_tarefa($nTarefa, $categoria, $status, $prioridade, $observacao) {
+function inserir_tarefa($nTarefa, $categoria, $status, $prioridade, $observacao) {
     try {
         $sql = 'INSERT INTO tarefa 
                             (nTarefa, categoria, status, prioridade, observacao)
@@ -36,7 +51,7 @@ function insere_tarefa($nTarefa, $categoria, $status, $prioridade, $observacao) 
     }
 }
 
-function lista_tarefas() {
+function listar_tarefas() {
     try {
         $sql = 'SELECT * FROM tarefa';
 
@@ -45,13 +60,13 @@ function lista_tarefas() {
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute();
-        //echo $stmt->rowCount();
+        //echo $stmt->rowCount(); // quantidade de linhas
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // foreach ($result as $row) {
         //     var_dump($row);
         // }
-        var_dump($result);
-        var_dump(json_encode($result));
+        //var_dump($result);
+        print_r(json_encode($result));
     } catch(PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }

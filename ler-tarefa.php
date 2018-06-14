@@ -1,27 +1,14 @@
-<?php
-
-require_once('funcoes.php');
-$acao = isset($_GET['acao']) ? $_GET['acao'] : null;
-
-if ($acao != null) {
-    lista_tarefas();
-    //print_r($retor);
-    //echo 'teste';
-}
-?>
-
 <div class="container">
     <h3 class="text-center">Ler Tarefa</h3>
     <form id="formListar" action="" method="">
-        <input type="hidden" name="acao" value="listarTodas">
+        <!-- <input type="hidden" name="acao" value="listarTarefas"> -->
         <button type="button" id="btnListar" class="btn btn-primary text-center" >Listar todas</button>
     </form>
 
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="montaLista">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Nome da Tarefa</th>
@@ -32,12 +19,11 @@ if ($acao != null) {
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="montaLista">
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-md-2"></div>
         
         <!-- Modal -->
         <div class="modal fade" id="modalListar" role="dialog">

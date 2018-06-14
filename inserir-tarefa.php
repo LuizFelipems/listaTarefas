@@ -1,19 +1,3 @@
-<?php
-require_once('funcoes.php');
-$nTarefa = isset($_GET['nTarefa']) ? $_GET['nTarefa'] : null;
-$categoria = isset($_GET['categoria']) ? $_GET['categoria'] : null;
-$status = isset($_GET['status']) ? $_GET['status'] : null;
-$prioridade = isset($_GET['prioridade']) ? $_GET['prioridade'] : null;
-$observacao = isset($_GET['observacao']) ? $_GET['observacao'] : null;
-$acao = isset($_GET['acao']) ? $_GET['acao'] : null;
-
-// echo $nTarefa, $categoria, $status, $prioridade, $observacao;
-if ($acao != null) {
-    //echo "Chegou aqui!";
-    insere_tarefa($nTarefa, $categoria, $status, $prioridade, $observacao);
-}
-
-?>
 <style>
 .alert{
     display: none;
@@ -61,9 +45,9 @@ if ($acao != null) {
                     <label for="observacao">Observação:</label>
                     <textarea name="observacao" class="form-control" rows="2" id="observacao"></textarea>
                 </div> 
-                <input type="hidden" name="acao" value="incluir">
+                <input type="hidden" name="acao" value="inserirTarefa">
                 <!-- <button type="submit" class="btn btn-primary text-center" data-toggle="modal" data-target="#myModal">+</button> -->
-                <button type="button" id="btnIncluir" class="btn btn-primary text-center" >+</button>
+                <button type="button" id="btnIncluirTarefa" class="btn btn-primary text-center" >+</button>
         </form>
         
     </div>

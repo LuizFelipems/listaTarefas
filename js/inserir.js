@@ -1,8 +1,8 @@
 $(document).ready(function () {
     
-    $("#btnIncluir").on("click", function(){
+    $("#btnIncluirTarefa").on("click", function(){
         $("#formIncluir").ajaxSubmit({
-                                url: 'inserir-tarefa.php', 
+                                url: 'funcoes.php', 
                                 type: 'get',
                                 resetForm: true,
                                 success: function(resp) {
